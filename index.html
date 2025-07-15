@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, viewport-fit=cover, user-scalable=yes">
+    <title>Time-Based Encryption Puzzle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Tektur:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Tektur', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            padding: 2rem;
+            display: none;
+        }
+        
+        .active-slide {
+            display: block;
+        }
+        
+        .tech-box {
+            background-color: rgba(30, 41, 59, 0.7);
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .puzzle-piece {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .navigation-dots {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            z-index: 10;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4b5563;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: #60a5fa;
+            transform: scale(1.3);
+        }
+        
+        .highlight-code {
+            color: #f472b6;
+        }
+        
+        .highlight-time {
+            color: #34d399;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1rem;
+            }
+            .tech-box {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2.5rem !important;
+            }
+            h2 {
+                font-size: 2rem !important;
+            }
+            h3 {
+                font-size: 1.25rem !important;
+            }
+            .text-lg {
+                font-size: 1rem !important;
+            }
+            .text-xl {
+                font-size: 1.1rem !important;
+            }
+            .puzzle-piece {
+                width: 100%;
+                max-width: none;
+            }
+            .grid-cols-4, .grid-cols-3, .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1 -->
+    <section id="slide1" class="slide active-slide">
+        <div class="container mx-auto h-full flex flex-col justify-center items-center text-center gap-8">
+            <div class="puzzle-piece relative overflow-hidden w-3/4 max-w-2xl">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/818ad1dd-88a4-4b28-98f3-6372b211b61c.png" alt="Digital security vault interface with glowing lock mechanism and clock elements" class="w-full h-auto rounded-xl">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70 rounded-xl"></div>
+                <div class="absolute inset-0 flex flex-col justify-center items-center p-8 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-blue-400">Time-Based Encryption Puzzle</h1>
+                    <p class="text-xl md:text-2xl text-blue-200">"Can You Crack the Clock?"</p>
+                </div>
+            </div>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl">
+                🔐 A dynamic security system where passwords evolve with time, creating ever-changing cryptographic puzzles
+            </p>
+        </div>
+    </section>
+
+    <!-- Slide 2 -->
+    <section id="slide2" class="slide">
+        <div class="container mx-auto h-full flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-300">The Puzzle Concept</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div class="tech-box flex flex-col items-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8d3b0430-a83a-4d4a-a639-90cf48033da9.png" alt="Analog clock icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-blue-200">Time-Based</h3>
+                    <p>Passwords change every hour based on clock position and seconds</p>
+                </div>
+                
+                <div class="tech-box flex flex-col items-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ee6b369b-c48c-429c-b2db-af00369cadb9.png" alt="Calendar icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-blue-200">Date-Sensitive</h3>
+                    <p>Daily cryptographic variations using day-of-month algorithms</p>
+                </div>
+                
+                <div class="tech-box flex flex-col items-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c36a9283-f95d-499a-ab47-415d0607156f.png" alt="Padlock icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-blue-200">Logical Structure</h3>
+                    <p>Combines temporal elements with cryptographic primitives</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 tech-box">
+                <p class="text-center text-lg">
+                    Inspired by real-world security principles used in banking systems and two-factor authentication
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3 -->
+    <section id="slide3" class="slide">
+        <div class="container mx-auto h-full flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-300">Encryption Formula</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8">
+                <div class="tech-box">
+                    <h3 class="text-xl font-bold mb-4 text-blue-200">Core Algorithm:</h3>
+                    <code class="block whitespace-pre-wrap text-sm md:text-base p-4 bg-slate-900 rounded">
+0x[sec-2]-[sec-2]*[min-2][DayChar][hr]_[hr×24]|[DayCode]
+                    </code>
+                </div>
+                
+                <div>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c6d7426c-91db-45a2-be52-7cb8054c8b6a.png" alt="Terminal screen showing formula components highlighted in different colors with annotations" class="w-full rounded-lg">
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="tech-box">
+                    <h4 class="font-bold text-blue-200 mb-2"><span class="highlight-code">Time Components</span></h4>
+                    <ul class="list-disc pl-5">
+                        <li>[sec-2]: Seconds minus offset</li>
+                        <li>[min-2]: Minutes minus offset</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-box">
+                    <h4 class="font-bold text-blue-200 mb-2"><span class="highlight-time">Date Components</span></h4>
+                    <ul class="list-disc pl-5">
+                        <li>[DayChar]: Day-specific character code</li>
+                        <li>[DayCode]: Encrypted day identifier</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4 -->
+    <section id="slide4" class="slide">
+        <div class="container mx-auto h-full flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-300">Demonstration: Day 1</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-8">
+                <div>
+                    <div class="mb-4 tech-box">
+                        <h3 class="text-xl font-bold mb-2 text-blue-200">Input Parameters:</h3>
+                        <ul>
+                            <li>📅 Day: 1</li>
+                            <li>🕒 Time: 1:00 PM</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-4 tech-box">
+                        <h3 class="text-xl font-bold mb-2 text-blue-200">Generated Output:</h3>
+                        <code class="block whitespace-pre-wrap text-xl p-4 bg-slate-900 rounded">
+0x00-86*A1_24|1A
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-800 p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4 text-blue-200">Decoding Logic:</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-bold">1. Time Calculation:</p>
+                            <p class="text-sm">1 hour = 60 mins = 86,400 sec</p>
+                            <p class="text-sm">1 day = 24 hours</p>
+                        </div>
+                        <div>
+                            <p class="font-bold">2. Components:</p>
+                            <p><span class="highlight-code">0x00</span> - Hexadecimal second marker</p>
+                            <p><span class="highlight-code">86*A1</span> - Minute-day interaction</p>
+                            <p><span class="highlight-time">_24|1A</span> - Hour-day verification</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-box mt-4">
+                <p class="text-center">Try decoding this output by working backwards from the time values</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5 -->
+    <section id="slide5" class="slide">
+        <div class="container mx-auto h-full flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-300">12-Day Puzzle Sequence</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full tech-box">
+                    <thead>
+                        <tr class="border-b border-gray-600">
+                            <th class="text-left p-4">Day</th>
+                            <th class="text-left p-4">Code</th>
+                            <th class="text-left p-4">Encrypted Output</th>
+                            <th class="text-left p-4">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-600 hover:bg-slate-700">
+                            <td class="p-4">1</td>
+                            <td class="p-4">1A</td>
+                            <td class="p-4 font-mono">0x00-86*A1_24</td>
+                            <td class="p-4">1:00 PM</td>
+                        </tr>
+                        <tr class="border-b border-gray-600 hover:bg-slate-700">
+                            <td class="p-4">2</td>
+                            <td class="p-4">2B</td>
+                            <td class="p-4 font-mono">0x80-27*B2_48</td>
+                            <td class="p-4">2:00 PM</td>
+                        </tr>
+                        <tr class="border-b border-gray-600 hover:bg-slate-700">
+                            <td class="p-4">3</td>
+                            <td class="p-4">3C</td>
+                            <td class="p-4 font-mono">0x12-54*C3_72</td>
+                            <td class="p-4">3:00 PM</td>
+                        </tr>
+                        <tr class="border-b border-gray-600 hover:bg-slate-700">
+                            <td class="p-4">4</td>
+                            <td class="p-4">4D</td>
+                            <td class="p-4 font-mono">0x44-13*D4_96</td>
+                            <td class="p-4">4:00 PM</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="p-4">...</td>
+                            <td class="p-4">...</td>
+                            <td class="p-4 font-mono">...</td>
+                            <td class="p-4">...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-8 tech-box">
+                <p class="text-center">
+                    Each day produces a completely unique cryptographic string while following the same underlying algorithm
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6 -->
+    <section id="slide6" class="slide">
+        <div class="container mx-auto h-full flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-300">Decoding Challenge</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="tech-box text-center">
+                    <h3 class="text-xl font-bold mb-4 text-blue-200">Current Puzzle</h3>
+                    
+                    <div class="mb-6">
+                        <p class="text-lg mb-2">🕒 Time: <span class="highlight-time">2:00 PM</span></p>
+                        <p class="text-lg mb-2">📅 Date: <span class="highlight-time">Day 2</span></p>
+                    </div>
+                    
+                    <code class="block whitespace-pre-wrap text-xl p-4 bg-slate-900 rounded mb-6">
+0x80-27*B2_48|2B
+                    </code>
+                    
+                    <p class="text-sm italic">Can you derive this from first principles?</p>
+                </div>
+                
+                <div>
+                    <div class="tech-box mb-6">
+                        <h3 class="text-xl font-bold mb-3 text-blue-200">Decoding Steps:</h3>
+                        <ol class="list-decimal pl-5 space-y-2">
+                            <li>Extract time components (80, 27)</li>
+                            <li>Identify day code (2B)</li>
+                            <li>Calculate hour multiplier (48)</li>
+                            <li>Verify structural patterns</li>
+                            <li>Reconstruct original values</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <button id="show-hint" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold transition">
+                            Reveal Hint
+                        </button>
+                    </div>
+                    
+                    <div id="hint-content" class="hidden mt-4 tech-box">
+                        <p>Hint: The number 27 represents minutes minus offset, while B2 combines the day character with hour</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7 -->
+    <section id="slide7" class="slide">
+        <div class="container mx-auto h-full flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-center mb-8 text-blue-300">Technical Implementation</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="tech-box flex flex-col items-center p-6">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e5a2b3d8-00a6-4ea2-bcc9-d3c0cf2cf0ad.png" alt="Padlock icon representing security" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-blue-200">Daily Login System</h3>
+                    <p class="text-center">Time-sensitive credentials refresh automatically</p>
+                </div>
+                
+                <div class="tech-box flex flex-col items-center p-6">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/211bd6bf-a8a6-452f-b115-32d077e42542.png" alt="Mobile phone icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-blue-200">Mobile App</h3>
+                    <p class="text-center">React Native implementation with secure storage</p>
+                </div>
+                
+                <div class="tech-box flex flex-col items-center p-6">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/51663d08-062b-4408-93e3-6e2a98f7805e.png" alt="Escape room icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-blue-200">Escape Room Logic</h3>
+                    <p class="text-center">Digital puzzle mechanics based on real-time</p>
+                </div>
+                
+                <div class="tech-box flex flex-col items-center p-6">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bcfe5069-4abb-42ae-a4b9-82a59c7470f2.png" alt="Clock icon" class="w-16 h-16 mb-4">
+                    <h3 class="text-xl font-bold mb-2 text-blue-200">Time-Based Access</h3>
+                    <p class="text-center">Secure temporal authentication layer</p>
+                </div>
+            </div>
+      </div>
+    </section>
+
+    <!-- Slide 8 -->
+    <section id="slide8" class="slide">
+        <div class="container mx-auto h-full flex flex-col justify-center items-center text-center">
+            <div class="bg-gradient-to-br from-blue-900 to-slate-800 p-8 rounded-2xl max-w-3xl">
+                <h2 class="text-4xl font-bold mb-6 text-blue-300">Puzzle-Based Security Thinking</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="tech-box p-4">
+                        <h3 class="text-xl font-bold mb-2 text-blue-200">Decode</h3>
+                        <p>Analyze temporal patterns</p>
+                    </div>
+                    <div class="tech-box p-4">
+                        <h3 class="text-xl font-bold mb-2 text-blue-200">Build</h3>
+                        <p>Implement secure systems</p>
+                    </div>
+                    <div class="tech-box p-4">
+                        <h3 class="text-xl font-bold mb-2 text-blue-200">Share</h3>
+                        <p>Collaborate on solutions</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <p class="text-xl mb-6">Follow for more cryptographic puzzles and technical builds</p>
+                    <div class="flex justify-center gap-4">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold transition">
+                            Connect
+                        </button>
+                        <button class="bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-lg font-bold transition">
+                            View Portfolio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Dots -->
+    <div class="navigation-dots">
+        <div class="dot active" data-slide="1"></div>
+        <div class="dot" data-slide="2"></div>
+        <div class="dot" data-slide="3"></div>
+        <div class="dot" data-slide="4"></div>
+        <div class="dot" data-slide="5"></div>
+        <div class="dot" data-slide="6"></div>
+        <div class="dot" data-slide="7"></div>
+        <div class="dot" data-slide="8"></div>
+    </div>
+
+    <script>
+        // Slide navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dots = document.querySelectorAll('.dot');
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 1;
+            
+            // Handle dot clicks
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideNum = parseInt(this.getAttribute('data-slide'));
+                    navigateToSlide(slideNum);
+                });
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    navigateToSlide(Math.min(currentSlide + 1, slides.length));
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    navigateToSlide(Math.max(currentSlide - 1, 1));
+                }
+            });
+            
+            // Swipe for touch devices
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const swipedThreshold = window.innerWidth > 768 ? 100 : 50;
+            
+            document.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+            
+            document.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - swipedThreshold) {
+                    navigateToSlide(Math.min(currentSlide + 1, slides.length));
+                } else if (touchEndX > touchStartX + swipedThreshold) {
+                    navigateToSlide(Math.max(currentSlide - 1, 1));
+                }
+            }
+            
+            function navigateToSlide(slideNum) {
+                // Hide all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active-slide');
+                });
+                
+                // Update dots
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // Show selected slide
+                document.querySelector(`#slide${slideNum}`).classList.add('active-slide');
+                document.querySelector(`.dot[data-slide="${slideNum}"]`).classList.add('active');
+                
+                currentSlide = slideNum;
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Show hint button for slide 6
+            const showHintBtn = document.getElementById('show-hint');
+            if (showHintBtn) {
+                showHintBtn.addEventListener('click', function() {
+                    document.getElementById('hint-content').classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
